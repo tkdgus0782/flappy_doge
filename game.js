@@ -13,6 +13,20 @@ class wall{
 			this.yWall = randY();
 		}
 	}
+	
+	check(){
+		if(xDoge + sizeDoge < this.xWall || xDoge > this.xWall + wWall){
+			
+		}
+		else{
+			if(this.yWall - hWall < yDoge && yDoge + sizeDoge < this.yWall){
+				
+			}
+			else{
+				gameover();
+			}
+		}
+	}
 }
 
 function randY(){
@@ -25,9 +39,9 @@ function init(){
 	window.imgDoge = new Image();
 	imgDoge.src = 'doge.jpg';
 	
-	window.dWall = -3;
+	window.dWall = -4;
 	window.wWall = 100;
-	window.hWall = 250;
+	window.hWall = 300;
 		
 	window.dDoge = 2;
 	window.yDoge = 200;
@@ -53,7 +67,15 @@ function updateSize(){
 }
 
 function play(){
-	setInterval(draw, 10);
+	window.playing = setInterval(draw, 10);
+}
+
+function gameover(){
+	clearInterval(playing);
+	scr.clearRect(0,0,canvas.width,canvas.height);
+	scr.fillStyle = 'black';
+	scr.font = '60px consolas';
+	scr.fillText('GAME OVER!!', canvas.width/3, canvas.height/2);
 }
 
 function moveDoge(){
@@ -83,6 +105,7 @@ function draw(){
 	for(let i=0; i<3; i++){
 		drawWall(walls[i].xWall, walls[i].yWall, wWall, hWall);
 		walls[i].move();
+		walls[i].check();
 	}
 
 	inCanvas();
@@ -92,7 +115,7 @@ function draw(){
 }
 
 function drawBackground(){
-	scr.fillStyle = 'rgba(0,0,0, 0)';
+	scr.fillStyle = 'rgba(100, 100, 100, 0.7)';
 	scr.fillRect(0,0,canvas.width,canvas.height);
 }
 
