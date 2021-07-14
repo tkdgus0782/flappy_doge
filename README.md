@@ -1,1 +1,1 @@
-https://tkdgus0782.github.io/index.html
+https://tkdgus0782.github.io/flappy_doge/
